@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Connexion {
 
     private static Connection connex = null;
-    private String url = "jdbc:postgresql://localhost:5432/geo_pharma";
+    private String url = "jdbc:postgresql://localhost:5432/geopharma_db";
     private String user = "postgres";
     private String pwd = "postgres";
 
