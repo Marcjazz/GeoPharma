@@ -1,11 +1,12 @@
 package geopharma;
 
 import com.connexion.Connexion;
-import java.awt.GridLayout;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+
 
 public class Acceuil extends javax.swing.JFrame {
 
@@ -36,7 +37,7 @@ public class Acceuil extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         ajouterPharma = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        imfond = new javax.swing.JLabel();
         newPharmaPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         textNomPharma = new javax.swing.JTextField();
@@ -135,14 +136,14 @@ public class Acceuil extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(0, 255, 102));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/Caducée-Pharmacie-logo.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jLabel1.setMaximumSize(new java.awt.Dimension(600, 600));
-        jLabel1.setMinimumSize(new java.awt.Dimension(622, 600));
-        jLabel1.setPreferredSize(new java.awt.Dimension(622, 600));
-        jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        imfond.setBackground(new java.awt.Color(0, 255, 102));
+        imfond.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imfond.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/Caducée-Pharmacie-logo.jpg"))); // NOI18N
+        imfond.setText("jLabel1");
+        imfond.setMaximumSize(new java.awt.Dimension(600, 600));
+        imfond.setMinimumSize(new java.awt.Dimension(622, 600));
+        imfond.setPreferredSize(new java.awt.Dimension(622, 600));
+        imfond.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         newPharmaPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -255,7 +256,7 @@ public class Acceuil extends javax.swing.JFrame {
                 .addGap(70, 70, 70))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imfond, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 90, Short.MAX_VALUE)))
         );
         jPanel4Layout.setVerticalGroup(
@@ -266,7 +267,7 @@ public class Acceuil extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imfond, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -431,7 +432,7 @@ public class Acceuil extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ajouterPharma;
     private javax.swing.JButton buttonCreer;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel imfond;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -456,7 +457,5 @@ public class Acceuil extends javax.swing.JFrame {
     private javax.swing.JTextField textNomPharma;
     // End of variables declaration//GEN-END:variables
 
-    public void openMap() {
-
-    }
+    
 }

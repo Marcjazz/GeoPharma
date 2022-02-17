@@ -227,7 +227,7 @@
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="633" max="-2" attributes="0"/>
+                              <Component id="imfond" min="-2" pref="633" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="90" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -242,7 +242,7 @@
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="580" max="-2" attributes="0"/>
+                              <Component id="imfond" min="-2" pref="580" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -250,7 +250,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel1">
+                <Component class="javax.swing.JLabel" name="imfond">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="ff" red="0" type="rgb"/>
