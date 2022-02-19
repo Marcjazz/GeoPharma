@@ -1,6 +1,6 @@
 package geopharma;
 
-import com.connexion.Connexion;
+import geopharma.Repository.Connexion;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

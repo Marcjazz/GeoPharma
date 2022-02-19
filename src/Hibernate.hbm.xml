@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="geopharma.entity.User" table="USER">
+        <id name="iduser" column="iduser">
+            <generator class="increment"/>
+        </id>
+        <property name="nom" type="String" size="10" column="non"/>
+        <property name="prenom" type="String" column="prenom"/>
+        <property name="email" type="String" column="email"/>
+        <property name="password" type="String" column="password"/>
+        <property name="datenaiss" type="String" column="datenaiss"/>
+        <property name="isAdmin" type="String" column="isAdmin"/>
+        <property name="fichier_preuve" type="String" column="fichier_preuve"/>
+        
+    </class>
+    
+    <class name="geopharma.entity.Pharmacie" table="PHARMACIE">
+        <id name="idpharmacie" column="idpharmacie">
+            <generator class="increment"/>
+        </id>
+        <property name="nom" type="String" column="non"/>
+        <property name="longitude" type="Double" column="longitude"/>
+        <property name="latitude" type="Double" column="latitude"/>
+        <property name="mode" type="String" column="mode"/>
+        <property name="contact" type="String" column="contact"/>
+        <property name="jour_ouverture" type="Date" column="jour_ouverture"/>
+        <property name="heure_ouverture" type="Time" column="heure_ouverture"/>
+        <property name="heure_fermeture" type="Time" column="heure_fermeture"/>
+        <many-to-one name="user" column="iduser" unique="true" not-null="true"/>
+    </class>
+
+</hibernate-mapping>
