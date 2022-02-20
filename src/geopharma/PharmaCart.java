@@ -52,6 +52,11 @@ public class PharmaCart extends javax.swing.JPanel {
         heureOvert.setText(" 08h00 - 18h00");
 
         jButton15.setText("voir");
+        jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton15MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -95,6 +100,10 @@ public class PharmaCart extends javax.swing.JPanel {
             .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseClicked
+//        Map.open_Map(jPanel11);
+    }//GEN-LAST:event_jButton15MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

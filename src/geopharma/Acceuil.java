@@ -1,22 +1,36 @@
 package geopharma;
 
 import geopharma.Repository.Connexion;
-
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import geopharma.entity.Pharmacie;
+import geopharma.service.Service;
+import java.awt.GridLayout;
+import java.util.List;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-
 
 public class Acceuil extends javax.swing.JFrame {
 
     Statement etat;
     Connexion connex;
+    Service service;
 
     public Acceuil() {
         initComponents();
+        service = new Service();
         newPharmaPanel.setVisible(false);
-        
+
+        GridLayout leftPanelLayout = new GridLayout(15, 1, 0, 0);
+        leftPanel.setLayout(leftPanelLayout);
+
+        List<Pharmacie> pharmas = service.findAllPharmacie();
+        Pharmacie pharmacie = new Pharmacie();
+        for (int i = 0; i < pharmas.size(); i++) {
+            pharmacie = pharmas.set(0, pharmacie);
+            System.out.println("Nom: " + pharmacie.getNom());
+            PharmaCart cart = new PharmaCart(pharmacie.getNom(), pharmacie.getJour_ouverture(),
+                    pharmacie.getHeure_fermeture() + " - " + pharmacie.getHeure_fermeture());
+            leftPanel.add(cart);
+        }
     }
 
     /**
@@ -52,11 +66,10 @@ public class Acceuil extends javax.swing.JFrame {
         buttonCreer = new javax.swing.JButton();
         termCheckBox = new javax.swing.JCheckBox();
         textJourOuvrable = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
+        leftPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(150, 20, 0, 0));
-        setPreferredSize(new java.awt.Dimension(922, 599));
         setResizable(false);
         setSize(new java.awt.Dimension(599, 543));
 
@@ -271,14 +284,14 @@ public class Acceuil extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
+        leftPanel.setLayout(leftPanelLayout);
+        leftPanelLayout.setHorizontalGroup(
+            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 294, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        leftPanelLayout.setVerticalGroup(
+            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 385, Short.MAX_VALUE)
         );
 
@@ -295,7 +308,7 @@ public class Acceuil extends javax.swing.JFrame {
                         .addGap(0, 4, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 14, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -307,7 +320,7 @@ public class Acceuil extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(ajouterPharma, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -373,23 +386,24 @@ public class Acceuil extends javax.swing.JFrame {
         if (nomPharma.isEmpty() || description.isEmpty() || jourOuvrable.isEmpty() || heureFermeture == 0 || heureOverture == 0) {
             JOptionPane.showMessageDialog(this, "Veuiller remplir tous les champs avant de valider");
         } else {
-            try {
-                double longitude = 6.125653;
-                double latitude = 11.456543;
-                PreparedStatement prepare = Connexion.seConnecter().prepareStatement(
-                        "INSERT INTO Pharmacie(nom, description, latitude, longitude, jour_ouvrable, heure_ouverture, heure_fermeture, mode) values(?, ?, ?, ?, ?, ?, ?, ?)");
-                prepare.setString(1, nomPharma);
-                prepare.setString(2, description);
-                prepare.setDouble(3, latitude);
-                prepare.setDouble(4, longitude);
-                prepare.setString(5, jourOuvrable);
-                prepare.setInt(6, heureOverture);
-                prepare.setInt(7, heureFermeture);
-                prepare.setString(8, "GARDE");
-                prepare.execute();
-            } catch (SQLException e) {
-                System.out.println("Erreur SQL: " + e.getMessage());
-            }
+            service.Ajouter_Pharmacie(nomPharma, Math.random() * 100, Math.random() * 50, 675019582, "" + heureOverture + "", "" + heureFermeture + "", jourOuvrable, "GARDE", "email@gmail.com");
+//            try {
+//                double longitude = 6.125653;
+//                double latitude = 11.456543;
+//                PreparedStatement prepare = Connexion.seConnecter().prepareStatement(
+//                        "INSERT INTO Pharmacie(nom, description, latitude, longitude, jour_ouvrable, heure_ouverture, heure_fermeture, mode) values(?, ?, ?, ?, ?, ?, ?, ?)");
+//                prepare.setString(1, nomPharma);
+//                prepare.setString(2, description);
+//                prepare.setDouble(3, latitude);
+//                prepare.setDouble(4, longitude);
+//                prepare.setString(5, jourOuvrable);
+//                prepare.setInt(6, heureOverture);
+//                prepare.setInt(7, heureFermeture);
+//                prepare.setString(8, "GARDE");
+//                prepare.execute();
+//            } catch (SQLException e) {
+//                System.out.println("Erreur SQL: " + e.getMessage());
+//            }
         }
 
     }//GEN-LAST:event_buttonCreerMouseClicked
@@ -443,11 +457,11 @@ public class Acceuil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JPanel leftPanel;
     private javax.swing.JPanel newPharmaPanel;
     private javax.swing.JSpinner spinnerHeureFermeture;
     private javax.swing.JSpinner spinnerHeureOverture;
@@ -457,5 +471,4 @@ public class Acceuil extends javax.swing.JFrame {
     private javax.swing.JTextField textNomPharma;
     // End of variables declaration//GEN-END:variables
 
-    
 }

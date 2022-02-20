@@ -4,9 +4,7 @@ package geopharma.service;
 import geopharma.Repository.Hibernate;
 import geopharma.entity.Pharmacie;
 import geopharma.entity.User;
-import java.sql.Time;
 import java.util.List;
-import java.util.Scanner;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -112,6 +110,34 @@ public class Service {
             session.close();
         }
         return pharmacie;
+    }
+    
+    public List<Pharmacie> findAllPharmacie(){
+        Session session = Hibernate.getSessionFactory().openSession();
+        Transaction tr = null;
+        Pharmacie pharmacie = new Pharmacie();
+        List<Pharmacie> results = null;
+        try{
+         
+            tr = session.beginTransaction();
+            String hql = "FROM Pharmacie P";
+            Query query = session.createQuery(hql);
+            results = query.list();
+            if(results.isEmpty()){
+                System.out.println("no existe");
+            }else{
+                pharmacie = results.set(0, pharmacie);
+                System.out.println(pharmacie.getNom());
+            }
+            tr.commit();
+        }catch(Exception e){
+            tr.rollback();
+            System.out.println("transaction non termainée : "+e.getMessage());
+            return null;
+        }finally{
+            session.close();
+        }
+        return results;
     }
     
     public User searchUser(String email){
