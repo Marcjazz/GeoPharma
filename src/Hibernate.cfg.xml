@@ -16,6 +16,6 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
      
         <mapping class="geopharma.entity.User"/>
-        
+        <mapping class="geopharma.entity.Pharmacie"/>
     </session-factory>
 </hibernate-configuration>

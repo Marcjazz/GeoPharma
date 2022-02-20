@@ -14,13 +14,13 @@ public class Main {
     
     public static void main(String[] args) {
         Service s = new Service();
-        s.deletePharmacie(4);
+        //s.deletePharmacie(4);
         //s.deleteUser(3);
         //s.searchPharmacie("Pharmacie de Nkomo");
         //s.searchUser("iveschatelin@gmail.com");
-        //s.Ajouter_User("NZOKOU", "Ives Chatelin", "iveschatelin@gmail.com", "ives123", "17/20/1999", "Diplome", Boolean.FALSE);
-        //s.Ajouter_Pharmacie("Pharmacie de Nkomo", 3.827987, 11.537504, 696832168, "09h00", "18h00", "Lundi à Vendredi", "Garde","iveschatelin@gmail.com");
-        //s.connexion("NZOKOU", "ives123");
+        s.Ajouter_User("NZOKOU", "Ives Chatelin", "iveschatelin@gmail.com", "ives123", "17/20/1999", "Diplome", Boolean.FALSE);
+        s.Ajouter_Pharmacie("Pharmacie de Nkomo", 3.827987, 11.537504, 696832168, "09h00", "18h00", "Lundi à Vendredi", "Garde","iveschatelin@gmail.com");
+        s.connexion("NZOKOU", "ives123");
         
     }
     
