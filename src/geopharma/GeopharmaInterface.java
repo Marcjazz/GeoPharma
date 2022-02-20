@@ -5,17 +5,19 @@
  */
 package geopharma;
 
+import geopharma.service.Service;
+
 /**
  *
  * @author Michele
  */
 public class GeopharmaInterface extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Geopharma
-     */
+    Service service;
+
     public GeopharmaInterface() {
         initComponents();
+        service = new Service();
     }
 
     /**
@@ -183,8 +185,12 @@ public class GeopharmaInterface extends javax.swing.JFrame {
         buttonCreer.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         buttonCreer.setForeground(new java.awt.Color(255, 255, 255));
         buttonCreer.setText("CREER");
-        buttonCreer.setActionCommand("CREER");
         buttonCreer.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        buttonCreer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonCreerMouseClicked(evt);
+            }
+        });
         buttonCreer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCreerActionPerformed(evt);
@@ -395,7 +401,7 @@ public class GeopharmaInterface extends javax.swing.JFrame {
             labelMois.setVisible(true);
             labelAnnee.setVisible(true);
             seperatorPrenom.setVisible(true);
-        } else{
+        } else {
             textPrenom.setVisible(false);
             comboJour.setVisible(false);
             comboMois.setVisible(false);
@@ -410,17 +416,37 @@ public class GeopharmaInterface extends javax.swing.JFrame {
             labelJour.setVisible(false);
             labelMois.setVisible(false);
             labelAnnee.setVisible(false);
-            seperatorPrenom.setVisible(false); 
-        
+            seperatorPrenom.setVisible(false);
+
         }
         isLoginPage = !isLoginPage;
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_lienLoginMouseClicked
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel3MouseClicked
+
+    private void buttonCreerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCreerMouseClicked
+        if (!isLoginPage) {
+            String nom = textNom.getText();
+            String prenom = textPrenom.getText();
+            String motDePasse = textPassword.getText();
+            //recuper le fichier preuve
+
+            String date = comboJour.getSelectedItem().toString();
+            int mois = (int) comboMois.getSelectedIndex();
+            String annee = comboAnnee.getSelectedItem().toString();
+
+            String datenaiss = date + "-" + (mois + 1) + "-" + annee;
+            service.Ajouter_User(nom, prenom, date, nom, datenaiss, motDePasse, false);
+        } else {
+            String nom = textNom.getText();
+            String motDePasse = textPassword.getText();
+            service.connexion(nom, motDePasse);
+        }
+    }//GEN-LAST:event_buttonCreerMouseClicked
 
     /**
      * @param args the command line arguments
